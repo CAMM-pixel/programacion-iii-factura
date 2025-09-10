@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.example.factura.Cliente;
+import org.example.factura.DatosCompartidos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class FormularioClienteController {
                 txtEmail.getText()
         );
         listaClientes.add(cliente);
+        DatosCompartidos.setClienteActual(cliente); // ← Aquí
         mostrarConfirmacion("Cliente registrado:\n" + cliente.getNombre() + " (" + cliente.getId() + ")");
         limpiarCampos();
     }

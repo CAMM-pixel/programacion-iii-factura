@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Persona {
+public abstract class Persona {
     private String nombre;
     private String id;
     private String direccion;

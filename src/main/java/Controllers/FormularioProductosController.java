@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.example.factura.DatosCompartidos;
 import org.example.factura.Producto;
 
 import java.util.ArrayList;
@@ -53,6 +54,7 @@ public class FormularioProductosController {
                     txtDescripcion.getText()
             );
             listaProductos.add(producto);
+            DatosCompartidos.agregarProducto(producto); // ← Aquí
             mostrarConfirmacion("Producto guardado:\n" + producto.getNombre() + " (" + producto.getId() + ")");
             limpiarCampos();
         } catch (NumberFormatException ex) {

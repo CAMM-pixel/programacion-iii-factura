@@ -59,17 +59,24 @@ public class VistaFacturaController {
     }
 
     private void crearFactura() {
-        if (clienteActual == null) {
-            mostrarError("Primero debes buscar o crear un cliente.");
+        Cliente cliente = DatosCompartidos.getClienteActual();
+        if (cliente == null) {
+            mostrarError("Primero debes registrar un cliente.");
+            return;
+        }
+
+        List<Producto> productos = DatosCompartidos.getProductos();
+        if (productos.isEmpty()) {
+            mostrarError("No hay productos registrados.");
             return;
         }
 
         List<LineaFactura> lineas = new ArrayList<>();
-        for (Producto p : productosSimulados) {
+        for (Producto p : productos) {
             lineas.add(new LineaFactura(p, p.getCantidad()));
         }
 
-        Factura factura = new Factura("F001", LocalDate.now(), clienteActual, lineas, new IVA());
+        Factura factura = new Factura("F001", LocalDate.now(), cliente, lineas, new IVA());
 
         tab.getItems().setAll(lineas);
         lblSubTotal.setText("SubTotal : $" + factura.calcularSubtotal());
